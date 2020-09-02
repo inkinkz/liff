@@ -59,7 +59,16 @@
 
       function openWindow() {}
 
-      async function getFriendship() {}
+      async function getFriendship() {
+        const friend = await liff.getFriendship();
+        document.getElementById('friendship').append(friend.friendFlag);
+
+        // if not a friend
+        if (!friend.friendFlag) {
+          if (confirm('คุณยังไม่ได้เพิ่ม Bot เป็นเพื่อน จะเพิ่มเลยไหม​'));
+          window.location = 'https://line.me/R/ti/p/@697hckyp';
+        }
+      }
 
       async function sendMsg() {
         if (liff.getContext().type !== 'none' && liff.getContext().type !== 'external') {
@@ -114,7 +123,7 @@
         getEnvironment();
         getUserProfile();
         getContext();
-        // getFriendship()
+        getFriendship();
         // createUniversalLink()
       }
       main();
