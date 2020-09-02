@@ -39,6 +39,13 @@
     <button id="btnLogOut" onclick="logOut()">Log Out</button>
     <button id="btnClose" onclick="closed()">Close</button>
 
+    <script src="js/vconsole.min.js"></script>
+    <script>
+      var vConsole = new VConsole();
+      console.log('Hello World!');
+      errorPls();
+    </script>
+
     <script src="https://static.line-scdn.net/liff/edge/versions/2.4.0/sdk.js"></script>
     <script>
       function createUniversalLink() {
@@ -144,15 +151,18 @@
 
       async function main() {
         await liff.init({ liffId: '1654890492-wpABbAd0' });
-        document.getElementById('isLoggedIn').append(liff.isLoggedIn());
-        if (liff.isLoggedIn()) {
-          getEnvironment();
-          getUserProfile();
-          getContext();
-          getFriendship();
-        } else {
-          liff.login();
-        }
+
+        liff.ready.then(() => {
+          document.getElementById('isLoggedIn').append(liff.isLoggedIn());
+          if (liff.isLoggedIn()) {
+            getEnvironment();
+            getUserProfile();
+            getContext();
+            getFriendship();
+          } else {
+            liff.login();
+          }
+        });
 
         createUniversalLink();
       }
