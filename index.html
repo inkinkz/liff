@@ -39,12 +39,6 @@
     <button id="btnLogOut" onclick="logOut()">Log Out</button>
     <button id="btnClose" onclick="closed()">Close</button>
 
-    <!-- <script src="js/vconsole.min.js"></script> -->
-    <!-- <script>
-    var vConsole = new VConsole()
-    console.log("Hello World!")
-  </script> -->
-
     <script src="https://static.line-scdn.net/liff/edge/versions/2.4.0/sdk.js"></script>
     <script>
       function createUniversalLink() {}
@@ -57,9 +51,16 @@
 
       async function scanCode() {}
 
-      function openWindow() {}
+      function openWindow() {
+        liff.openWindow({
+          url: 'https://skooldio.com',
+          external: true,
+        });
+      }
 
       async function getFriendship() {
+        // Gets the friendship status of the LINE Official Account that's linked to
+        // the LINE Login channel to which the LIFF app is added.
         const friend = await liff.getFriendship();
         document.getElementById('friendship').append(friend.friendFlag);
 
