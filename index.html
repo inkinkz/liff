@@ -61,7 +61,18 @@
 
       async function getFriendship() {}
 
-      async function sendMsg() {}
+      async function sendMsg() {
+        if (liff.getContext().type !== 'none' && liff.getContext().type !== 'external') {
+          await liff.sendMessages([
+            {
+              type: 'sticker',
+              packageId: 1,
+              stickerId: 1,
+            },
+          ]);
+          alert('Message Sent!');
+        }
+      }
 
       function getContext() {
         document.getElementById('type').append(liff.getContext().type);
@@ -78,7 +89,7 @@
         document.getElementById('userId').append(profile.userId);
         document.getElementById('statusMessage').append(profile.statusMessage);
         document.getElementById('displayName').append(profile.displayName);
-        document.getElementById('decodedIDToken').append(liff.getDecodedIDToken());
+        document.getElementById('decodedIDToken').append(liff.getDecodedIDToken().email);
       }
 
       function getEnvironment() {
