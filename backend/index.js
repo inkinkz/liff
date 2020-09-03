@@ -6,6 +6,8 @@ const json = await request.get({
   json: true,
 });
 
+//test
+
 // check if it matches our channel id
 // mismatch = possibly spam
 if (json.client_id !== CHANNEL_ID) {
