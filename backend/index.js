@@ -5,6 +5,8 @@ const json = await request.get({
   url: `https://api.line.me/oauth2/v2.1/verify?access_token=${accessToken}`,
   json: true
 })
+
+// check if it matches our channel id
 if (json.client_id !== CHANNEL_ID) {
   return 401
 }
